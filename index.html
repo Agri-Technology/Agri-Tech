@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,7 @@
   <link rel="icon" href="images/home.theme-light.png" type="image/x-icon">
 
   <style>
+    /* General Styles */
     .hidden {
       display: none;
     }
@@ -36,18 +38,31 @@
         transform: translateY(0);
       }
     }
+
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Slideshow Styles */
+    .slideshow-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
     .slideshow-img {
       position: absolute;
       width: 100%;
       height: 100%;
       object-fit: cover;
       opacity: 0;
-      z-index: 0;
       transition: opacity 1s ease-in-out;
     }
     .slideshow-img.active {
       opacity: 1;
-      z-index: 10;
     }
     .slide-nav {
       cursor: pointer;
@@ -62,6 +77,100 @@
       font-weight: bold;
       color: #22c55e;
     }
+
+    /* Theme Styles */
+    body.dark {
+      background-color: #1f2937; /* gray-800 */
+      color: #f9fafb; /* gray-50 */
+    }
+    body.dark header {
+        background-color: #166534; /* green-800 */
+    }
+    body.dark #mobileMenu {
+        background-color: #15803d; /* green-700 */
+    }
+    body.dark footer {
+        background-color: #166534; /* green-800 */
+    }
+    body.dark .technologies-bg {
+        background-color: #1f2937; /* gray-800 */
+    }
+    body.dark .news-bg {
+        background-color: #111827; /* gray-900 */
+    }
+    body.dark .case-studies-bg {
+        background-color: #111827; /* gray-900 */
+    }
+    body.dark .resource-card, body.dark .tech-card, body.dark .news-card, body.dark .case-study-card {
+        background-color: #111827; /* gray-900 */
+        border-color: #16a34a; /* green-600 */
+    }
+    body.dark .footer-link:hover {
+        color: #f0fdf4; /* green-50 */
+    }
+    body.dark .mobile-menu-link:hover {
+        color: #bbf7d0; /* green-200 */
+    }
+    body.dark .desktop-nav-link:hover {
+        color: #bbf7d0; /* green-200 */
+    }
+    body.dark .filter-button {
+        background-color: #16a34a; /* green-600 */
+        color: #f0fdf4; /* green-50 */
+    }
+    body.dark .filter-button:hover {
+        background-color: #15803d; /* green-700 */
+    }
+    body.dark .filter-button.active {
+         background-color: #bbf7d0; /* green-200 */
+         color: #166534; /* green-800 */
+    }
+    body.dark #searchInput {
+        background-color: #111827; /* gray-900 */
+        border-color: #16a34a; /* green-600 */
+        color: #f9fafb; /* gray-50 */
+    }
+    body.dark #searchInput:focus {
+        border-color: #22c55e; /* green-500 */
+        box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3); /* green-500 with opacity */
+    }
+    body.dark .about-bg {
+        background-color: #1f2937; /* gray-800 */
+    }
+
+    /* Scrollbar Styles */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    body.dark::-webkit-scrollbar-track {
+      background: #111827; /* gray-900 */
+    }
+    body.dark::-webkit-scrollbar-thumb {
+      background: #4b5563; /* gray-600 */
+    }
+    body.dark::-webkit-scrollbar-thumb:hover {
+      background: #6b7280; /* gray-500 */
+    }
+
+    /* Focus Styles for Accessibility */
+    .focus-outline:focus {
+        outline: 2px solid #22c55e; /* green-500 */
+        outline-offset: 2px;
+    }
+    body.dark .focus-outline:focus {
+        outline: 2px solid #bbf7d0; /* green-200 */
+        outline-offset: 2px;
+    }
   </style>
 </head>
 <body class="light bg-gray-50 text-gray-800 font-sans transition-colors duration-300" id="body">
@@ -73,22 +182,21 @@
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex space-x-6">
-        <a href="#home" class="capitalize hover:text-green-200 transition-colors">Home</a>
-        <a href="#resources" class="capitalize hover:text-green-200 transition-colors">Resources</a>
-        <a href="#technologies" class="capitalize hover:text-green-200 transition-colors">Technologies</a>
-        <a href="#news" class="capitalize hover:text-green-200 transition-colors">News</a>
-   
-        <a href="#case-studies" class="capitalize hover:text-green-200 transition-colors">Case Studies</a>
-        <a href="#downloadable resources" class="capitalize hover:text-green-200 transition-colors">Downloadable Resources</a>
-        <a href="#faqs" class="capitalize hover:text-green-200 transition-colors">FAQs</a>
-        <a href="#about" class="capitalize hover:text-green-200 transition-colors">About</a>
+        <a href="#home" class="capitalize desktop-nav-link hover:text-green-200 transition-colors focus-outline">Home</a>
+        <a href="#resources" class="capitalize desktop-nav-link hover:text-green-200 transition-colors focus-outline">Resources</a>
+        <a href="#technologies" class="capitalize desktop-nav-link hover:text-green-200 transition-colors focus-outline">Technologies</a>
+        <a href="#news" class="capitalize desktop-nav-link hover:text-green-200 transition-colors focus-outline">News</a>
+        <a href="#case-studies" class="capitalize desktop-nav-link hover:text-green-200 transition-colors focus-outline">Case Studies</a>
+        <a href="#downloadable-resources" class="capitalize desktop-nav-link hover:text-green-200 transition-colors focus-outline">Downloadable Resources</a>
+        <a href="#faqs" class="capitalize desktop-nav-link hover:text-green-200 transition-colors focus-outline">FAQs</a>
+        <a href="#about" class="capitalize desktop-nav-link hover:text-green-200 transition-colors focus-outline">About</a>
       </nav>
 
       <!-- Theme Toggle -->
-      <button id="themeToggle" class="ml-4 bg-green-600 hover:bg-green-500 px-3 py-1 rounded text-sm">Dark Mode</button>
+      <button id="themeToggle" class="ml-4 bg-green-600 hover:bg-green-500 px-3 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2 focus:ring-offset-green-700" aria-label="Toggle dark mode">Dark Mode</button>
 
       <!-- Mobile Menu Button -->
-      <button id="menuButton" class="md:hidden focus:outline-none">
+      <button id="menuButton" class="md:hidden focus:outline-none focus:ring-2 focus:ring-white rounded" aria-label="Open mobile menu" aria-expanded="false">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
@@ -97,48 +205,45 @@
 
     <!-- Mobile Menu -->
     <div id="mobileMenu" class="hidden md:hidden bg-green-800 p-4 space-y-3">
-      <a href="#home" class="block w-full text-left capitalize py-2 hover:text-green-200 transition-colors">Home</a>
-      <a href="#resources" class="block w-full text-left capitalize py-2 hover:text-green-200 transition-colors">Resources</a>
-      <a href="#technologies" class="block w-full text-left capitalize py-2 hover:text-green-200 transition-colors">Technologies</a>
-      <a href="#news" class="block w-full text-left capitalize py-2 hover:text-green-200 transition-colors">News</a>
-
-      <a href="#case-studies" class="block w-full text-left capitalize py-2 hover:text-green-200 transition-colors">Case Studies</a>
-      <a href="#downloadable resources" class="block w-full text-left capitalize py-2 hover:text-green-200 transition-colors">Downloadable Resources</a>
-      <a href="#faqs" class="block w-full text-left capitalize py-2 hover:text-green-200 transition-colors">FAQs</a>
-      <a href="#about" class="block w-full text-left capitalize py-2 hover:text-green-200 transition-colors">About</a>
+      <a href="#home" class="block w-full text-left capitalize py-2 mobile-menu-link hover:text-green-200 transition-colors focus-outline">Home</a>
+      <a href="#resources" class="block w-full text-left capitalize py-2 mobile-menu-link hover:text-green-200 transition-colors focus-outline">Resources</a>
+      <a href="#technologies" class="block w-full text-left capitalize py-2 mobile-menu-link hover:text-green-200 transition-colors focus-outline">Technologies</a>
+      <a href="#news" class="block w-full text-left capitalize py-2 mobile-menu-link hover:text-green-200 transition-colors focus-outline">News</a>
+      <a href="#case-studies" class="block w-full text-left capitalize py-2 mobile-menu-link hover:text-green-200 transition-colors focus-outline">Case Studies</a>
+      <a href="#downloadable-resources" class="block w-full text-left capitalize py-2 mobile-menu-link hover:text-green-200 transition-colors focus-outline">Downloadable Resources</a>
+      <a href="#faqs" class="block w-full text-left capitalize py-2 mobile-menu-link hover:text-green-200 transition-colors focus-outline">FAQs</a>
+      <a href="#about" class="block w-full text-left capitalize py-2 mobile-menu-link hover:text-green-200 transition-colors focus-outline">About</a>
     </div>
   </header>
 
   <!-- Hero Section with Background Image Slideshow -->
-  <section id="home" class="relative bg-gray-900 text-white overflow-hidden h-screen flex items-center">
-    <div class="absolute inset-0 z-0">
-      <img src="https://media.istockphoto.com/id/1441111043/photo/automatic-agricultural-technology-with-close-up-view-of-robotic-arm-harvesting-lettuce-in.webp?a=1&b=1&s=612x612&w=0&k=20&c=hyL_W3ygVglw9fBCc_M-7dG-2KOJURDhHqmqSHYqgCE=" alt="Slide 1" class="slide w-full h-full object-cover transition-opacity duration-1000 ease-in-out slideshow-img active">
-      <img src="https://media.istockphoto.com/id/2150078427/photo/young-farmer-woman-is-inspecting-and-controlling-a-drone-in-a-green-wheat-field-modern.webp?a=1&b=1&s=612x612&w=0&k=20&c=4xemGvR39wwjIOKNPjwsyRynrnestRBXQj7_LYk2H4U=" alt="Slide 2" class="slide w-full h-full object-cover transition-opacity duration-1000 ease-in-out slideshow-img">
-      <img src="https://media.istockphoto.com/id/2124343912/photo/marine-and-aircraft-drone-group-control-system-hologram-high-tech-technology-military.webp?a=1&b=1&s=612x612&w=0&k=20&c=t-fAEM3g1i55eW7-TZhUUEgJFCIW5QyELdH6cVImtQI=" alt="Slide 3" class="slide w-full h-full object-cover transition-opacity duration-1000 ease-in-out slideshow-img">
-      <img src="https://plus.unsplash.com/premium_photo-1675824255749-212b7efcd580?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2xpbWF0ZSUyMHJlc2lsaWVudCUyMHRlY2h8ZW58MHx8MHx8fDA%3D" alt="Slide 4" class="slide w-full h-full object-cover transition-opacity duration-1000 ease-in-out slideshow-img">
-      <img src="https://plus.unsplash.com/premium_photo-1661962668668-e8c1bad829f0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c3VzdGFpbmFibGUlMjBhZ3JpY3VsdHVyZXxlbnwwfHwwfHx8MA%3D%3D" alt="Slide 5" class="slide w-full h-full object-cover transition-opacity duration-1000 ease-in-out slideshow-img">
+  <section id="home" class="relative text-white h-screen flex items-center justify-center overflow-hidden">
+    <!-- Slideshow Container (behind text) -->
+    <div class="slideshow-container">
+      <img src="https://media.istockphoto.com/id/1441111043/photo/automatic-agricultural-technology-with-close-up-view-of-robotic-arm-harvesting-lettuce-in.webp?a=1&b=1&s=612x612&w=0&k=20&c=hyL_W3ygVglw9fBCc_M-7dG-2KOJURDhHqmqSHYqgCE=" alt="Robotic arm harvesting lettuce in a high-tech greenhouse" class="slideshow-img active">
+      <img src="https://media.istockphoto.com/id/2150078427/photo/young-farmer-woman-is-inspecting-and-controlling-a-drone-in-a-green-wheat-field-modern.webp?a=1&b=1&s=612x612&w=0&k=20&c=4xemGvR39wwjIOKNPjwsyRynrnestRBXQj7_LYk2H4U=" alt="Young female farmer inspecting crops using a drone in a wheat field" class="slideshow-img">
+      <img src="https://media.istockphoto.com/id/2124343912/photo/marine-and-aircraft-drone-group-control-system-hologram-high-tech-technology-military.webp?a=1&b=1&s=612x612&w=0&k=20&c=t-fAEM3g1i55eW7-TZhUUEgJFCIW5QyELdH6cVImtQI=" alt="Aerial view of agricultural drones operating in a field" class="slideshow-img">
+      <img src="https://plus.unsplash.com/premium_photo-1675824255749-212b7efcd580?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2xpbWF0ZSUyMHJlc2lsaWVudCUyMHRlY2h8ZW58MHx8MHx8fDA%3D" alt="Close-up of climate-resilient technology in a modern farm setting" class="slideshow-img">
+      <img src="https://plus.unsplash.com/premium_photo-1661962668668-e8c1bad829f0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c3VzdGFpbmFibGUlMjBhZ3JpY3VsdHVyZXxlbnwwfHwwfHx8MA%3D%3D" alt="Sustainable agricultural practices with modern technology integration" class="slideshow-img">
     </div>
 
-    <!-- Overlay Darken -->
-    <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
-
-    <!-- Content -->
-    <div class="container mx-auto px-4 relative z-20 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">Empowering Agriculture </h2>
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">Through Innovation</h2>
-      <p class="text-lg md:text-xl mb-6 max-w-2xl mx-auto">Your one-stop hub for agri-tech research, tools, and solutions to transform modern farming practices.</p>
-      <a href="#resources" class="bg-white text-green-700 px-6 py-3 rounded-full font-semibold hover:bg-green-50 transition-colors shadow-md transform hover:scale-105 duration-300 inline-block">Explore Resources</a> 
+    <!-- Content (on top of slideshow) -->
+    <div class="container mx-auto px-4 relative z-10 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 fade-in">Empowering Agriculture</h2>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 fade-in">Through Innovation</h2>
+      <p class="text-lg md:text-xl mb-6 max-w-2xl mx-auto fade-in">Your one-stop hub for agri-tech research, tools, and solutions to transform modern farming practices.</p>
+      <a href="#resources" class="bg-white text-green-700 px-6 py-3 rounded-full font-semibold hover:bg-green-50 transition-colors shadow-md transform hover:scale-105 duration-300 inline-block focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2 focus:ring-offset-black focus:ring-opacity-50 fade-in">Explore Resources</a> 
     </div>
   </section>
 
   <!-- Technologies Section -->
-  <section id="technologies" class="py-16 bg-white">
+  <section id="technologies" class="py-16 technologies-bg">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold mb-8 text-center text-green-700">Cutting-Edge Agri-Tech Innovations</h2>
       <p class="text-center max-w-2xl mx-auto text-gray-600 mb-12">Discover the latest technologies transforming agriculture—from smart sensors to autonomous machinery.</p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- IoT Farming -->
-        <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 hover:shadow-xl transition-shadow group">
+        <div class="tech-card bg-white border border-green-200 rounded-lg shadow-sm p-6 hover:shadow-xl transition-shadow group">
           <div class="w-16 h-16 mb-4 bg-green-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -146,7 +251,7 @@
           </div>
           <h3 class="text-xl font-bold text-gray-800 mb-2">IoT Farming Systems</h3>
           <p class="text-gray-600 mb-4">Real-time monitoring of soil moisture, temperature, and crop health through interconnected devices that optimize farm management.</p>
-          <a href="pages/iot-farming-practices.html" class="text-green-600 font-medium hover:underline inline-flex items-center">
+          <a href="pages/iot-farming-practices.html" class="text-green-600 font-medium hover:underline inline-flex items-center focus-outline">
             Learn More
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -154,7 +259,7 @@
           </a>
         </div>
         <!-- AI & Machine Learning -->
-        <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 hover:shadow-xl transition-shadow group">
+        <div class="tech-card bg-white border border-green-200 rounded-lg shadow-sm p-6 hover:shadow-xl transition-shadow group">
           <div class="w-16 h-16 mb-4 bg-green-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -162,7 +267,7 @@
           </div>
           <h3 class="text-xl font-bold text-gray-800 mb-2">AI & Predictive Analytics</h3>
           <p class="text-gray-600 mb-4">Machine learning models that analyze historical data and environmental conditions to predict yields and recommend optimal planting strategies.</p>
-          <a href="pages/ai-predictive-analytics.html" class="text-green-600 font-medium hover:underline inline-flex items-center">
+          <a href="pages/ai-predictive-analytics.html" class="text-green-600 font-medium hover:underline inline-flex items-center focus-outline">
             Learn More
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -170,7 +275,7 @@
           </a>
         </div>
         <!-- Drones -->
-        <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 hover:shadow-xl transition-shadow group">
+        <div class="tech-card bg-white border border-green-200 rounded-lg shadow-sm p-6 hover:shadow-xl transition-shadow group">
           <div class="w-16 h-16 mb-4 bg-green-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -178,7 +283,7 @@
           </div>
           <h3 class="text-xl font-bold text-gray-800 mb-2">Drone Technology</h3>
           <p class="text-gray-600 mb-4">High-resolution aerial imaging and spraying drones provide farmers with actionable insights and precision crop treatment at scale.</p>
-          <a href="pages/drone-technology.html" class="text-green-600 font-medium hover:underline inline-flex items-center">
+          <a href="pages/drone-technology.html" class="text-green-600 font-medium hover:underline inline-flex items-center focus-outline">
             Learn More
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -190,19 +295,19 @@
   </section>
 
   <!-- Resources Section -->
-  <section id="resources" class="py-16 bg-white">
+  <section id="resources" class="text-gray-700 mb-6 mx-auto">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold mb-8 text-center text-green-700">Agri-Tech Resources</h2>
       <div class="mb-6 flex flex-col sm:flex-row gap-4 justify-center">
         <input type="text" id="searchInput" placeholder="Search resources..." class="px-4 py-2 border border-green-300 rounded w-full sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-green-300">
         <div class="flex flex-wrap gap-2 justify-center">
-          <button onclick="filterResources('all')" class="px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors active">All</button>
-          <button onclick="filterResources('iot')" class="px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors">IoT</button>
-          <button onclick="filterResources('ai')" class="px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors">AI</button>
-          <button onclick="filterResources('robotics')" class="px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors">Robotics</button>
-          <button onclick="filterResources('drones')" class="px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors">Drones</button>
-          <button onclick="filterResources('blockchain')" class="px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors">Blockchain</button>
-          <button onclick="filterResources('climate')" class="px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors">Climate Tech</button>
+          <button onclick="filterResources('all')" class="filter-button px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors active">All</button>
+          <button onclick="filterResources('iot')" class="filter-button px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors">IoT</button>
+          <button onclick="filterResources('ai')" class="filter-button px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors">AI</button>
+          <button onclick="filterResources('robotics')" class="filter-button px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors">Robotics</button>
+          <button onclick="filterResources('drones')" class="filter-button px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors">Drones</button>
+          <button onclick="filterResources('blockchain')" class="filter-button px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors">Blockchain</button>
+          <button onclick="filterResources('climate')" class="filter-button px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors">Climate Tech</button>
         </div>
       </div>
       <div id="resourceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -212,16 +317,16 @@
   </section>
 
   <!-- News & Articles Section -->
-  <section id="news" class="py-16 bg-gray-100">
+  <section id="news" class="py-16 news-bg">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold mb-12 text-center text-green-700">Latest Agri-Tech News</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="toggleDetails('news1')">
-          <img src="https://media.istockphoto.com/id/1585376533/photo/smart-agricultural-greenhouse.webp?a=1&b=1&s=612x612&w=0&k=20&c=VsYOTQDoKKXrvtP-U58pdk_DXDvhbGMOe_CgmmQpepQ= " alt="Smart Irrigation Systems in Modern Farming" class="w-full h-48 object-cover" />
+        <div class="news-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="toggleDetails('news1')">
+          <img src="https://media.istockphoto.com/id/1585376533/photo/smart-agricultural-greenhouse.webp?a=1&b=1&s=612x612&w=0&k=20&c=VsYOTQDoKKXrvtP-U58pdk_DXDvhbGMOe_CgmmQpepQ=" alt="Automated irrigation system in a smart greenhouse" class="w-full h-48 object-cover" />
           <div class="p-6">
             <h3 class="text-xl font-semibold text-gray-800 mb-2">Smart Irrigation Systems in Modern Farming</h3>
             <p id="news1" class="text-gray-600 mb-4 hidden">Explore how IoT-based irrigation systems are revolutionizing water management in agriculture.</p>
-            <a href="pages/smart-irrigation-systems-in-modern-farming.html" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+            <a href="pages/smart-irrigation-systems-in-modern-farming.html" class="text-green-600 hover:text-green-800 font-medium flex items-center focus-outline">
               Read More
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -229,12 +334,12 @@
             </a>
           </div>
         </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="toggleDetails('news2')">
-          <img src="https://media.istockphoto.com/id/537635746/photo/flying-drone-and-green-wheat-field.webp?a=1&b=1&s=612x612&w=0&k=20&c=04ST9rASGF8bpv8sQgv3lPKEyPmgO1cgCqyQspcWUIc= " alt="Drones in Precision Agriculture" class="w-full h-48 object-cover" />
+        <div class="news-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="toggleDetails('news2')">
+          <img src="https://media.istockphoto.com/id/537635746/photo/flying-drone-and-green-wheat-field.webp?a=1&b=1&s=612x612&w=0&k=20&c=04ST9rASGF8bpv8sQgv3lPKEyPmgO1cgCqyQspcWUIc=" alt="Drones flying over a green wheat field for precision agriculture" class="w-full h-48 object-cover" />
           <div class="p-6">
             <h3 class="text-xl font-semibold text-gray-800 mb-2">Drones in Precision Agriculture</h3>
             <p id="news2" class="text-gray-600 mb-4 hidden">Discover the impact of drone technology on crop monitoring and yield optimization.</p>
-            <a href="pages/drones-in-precision-agriculture.html" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+            <a href="pages/drones-in-precision-agriculture.html" class="text-green-600 hover:text-green-800 font-medium flex items-center focus-outline">
               Read More
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -242,12 +347,12 @@
             </a>
           </div>
         </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="toggleDetails('news3')">
-          <img src="https://media.istockphoto.com/id/1297336310/photo/agriculture-and-technology-concept-agritech.webp?a=1&b=1&s=612x612&w=0&k=20&c=vF_lMcuEt9h8Gldlcl_6PHvmt9EHPhqVw71jmfej6Uw=" alt="AI-Powered Pest Detection Tools" class="w-full h-48 object-cover" />
+        <div class="news-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="toggleDetails('news3')">
+          <img src="https://media.istockphoto.com/id/1297336310/photo/agriculture-and-technology-concept-agritech.webp?a=1&b=1&s=612x612&w=0&k=20&c=vF_lMcuEt9h8Gldlcl_6PHvmt9EHPhqVw71jmfej6Uw=" alt="AI technology concept in agriculture" class="w-full h-48 object-cover" />
           <div class="p-6">
             <h3 class="text-xl font-semibold text-gray-800 mb-2">AI-Powered Pest Detection Tools</h3>
             <p id="news3" class="text-gray-600 mb-4 hidden">Learn how artificial intelligence is helping farmers identify and manage pests efficiently.</p>
-            <a href="pages/AI-Powered-pest-detection-tools.html" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+            <a href="pages/AI-Powered-pest-detection-tools.html" class="text-green-600 hover:text-green-800 font-medium flex items-center focus-outline">
               Read More
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -255,12 +360,12 @@
             </a>
           </div>
         </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="toggleDetails('news4')">
-          <img src="https://plus.unsplash.com/premium_photo-1675824255749-212b7efcd580?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2xpbWF0ZSUyMHJlc2lsaWVuY2UlMjB0ZWNobm9sb2d5fGVufDB8fDB8fHww" alt="Climate Resilience Tech Adoption" class="w-full h-48 object-cover" />
+        <div class="news-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="toggleDetails('news4')">
+          <img src="https://plus.unsplash.com/premium_photo-1675824255749-212b7efcd580?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2xpbWF0ZSUyMHJlc2lsaWVuY2UlMjB0ZWNobm9sb2d5fGVufDB8fDB8fHww" alt="Climate resilience technology concept" class="w-full h-48 object-cover" />
           <div class="p-6">
             <h3 class="text-xl font-semibold text-gray-800 mb-2">Climate Resilience Tech Adoption</h3>
             <p id="news4" class="text-gray-600 mb-4 hidden">Exploring new climate-resilient crops and sustainable farming techniques for drought-prone regions.</p>
-            <a href="pages/climate-resilience-tech-adoption.html" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+            <a href="pages/climate-resilience-tech-adoption.html" class="text-green-600 hover:text-green-800 font-medium flex items-center focus-outline">
               Read More
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -268,12 +373,12 @@
             </a>
           </div>
         </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="toggleDetails('news5')">
-          <img src="https://media.istockphoto.com/id/1200681157/photo/sun-comes-out-from-behind-the-earth-in-space-with-geometric-network-polygon-graphic-and.webp?a=1&b=1&s=612x612&w=0&k=20&c=WOw0IF-gsWszHyzRSFyPJGqWLkJqxzUgdGIE_U0DZnQ=" alt="Blockchain Traceability in Food Supply" class="w-full h-48 object-cover" />
+        <div class="news-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="toggleDetails('news5')">
+          <img src="https://media.istockphoto.com/id/1200681157/photo/sun-comes-out-from-behind-the-earth-in-space-with-geometric-network-polygon-graphic-and.webp?a=1&b=1&s=612x612&w=0&k=20&c=WOw0IF-gsWszHyzRSFyPJGqWLkJqxzUgdGIE_U0DZnQ=" alt="Blockchain technology network graphic" class="w-full h-48 object-cover" />
           <div class="p-6">
             <h3 class="text-xl font-semibold text-gray-800 mb-2">Blockchain Traceability in Food Supply</h3>
             <p id="news5" class="text-gray-600 mb-4 hidden">How blockchain is improving transparency and trust across agricultural supply chains globally.</p>
-            <a href="pages/blockchain-traceability-in-food-supply.html" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+            <a href="pages/blockchain-traceability-in-food-supply.html" class="text-green-600 hover:text-green-800 font-medium flex items-center focus-outline">
               Read More
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -281,12 +386,12 @@
             </a>
           </div>
         </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="toggleDetails('news6')">
-          <img src="https://media.istockphoto.com/id/1281634250/photo/large-vertical-farm-inside-a-greenhouse-image-generated-digitally.webp?a=1&b=1&s=612x612&w=0&k=20&c=wLwPVE4Bur-1U81MoIw0wCxv5P6xfScomIK0WdQLjzo= " alt="Vertical Farming Revolution" class="w-full h-48 object-cover" />
+        <div class="news-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="toggleDetails('news6')">
+          <img src="https://media.istockphoto.com/id/1281634250/photo/large-vertical-farm-inside-a-greenhouse-image-generated-digitally.webp?a=1&b=1&s=612x612&w=0&k=20&c=wLwPVE4Bur-1U81MoIw0wCxv5P6xfScomIK0WdQLjzo=" alt="Large vertical farm inside a greenhouse" class="w-full h-48 object-cover" />
           <div class="p-6">
             <h3 class="text-xl font-semibold text-gray-800 mb-2">Vertical Farming Revolution</h3>
             <p id="news6" class="text-gray-600 mb-4 hidden">Urban farming innovations like vertical hydroponic farms are reshaping food production in cities worldwide.</p>
-            <a href="pages/vertical-farming-revolution.html" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+            <a href="pages/vertical-farming-revolution.html" class="text-green-600 hover:text-green-800 font-medium flex items-center focus-outline">
               Read More
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -299,16 +404,16 @@
   </section>
 
   <!-- Case Studies Section -->
-  <section id="case-studies" class="py-16 bg-gray-100">
+  <section id="case-studies" class="py-16 case-studies-bg">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold mb-12 text-center text-green-700">Success Stories & Case Studies</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+        <div class="case-study-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
           <img src="https://plus.unsplash.com/premium_photo-1661854008793-8ce54b2e622b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c21hcnQlMjBmYXJtcyUyMGluZGlhfGVufDB8fDB8fHww" alt="Smart Farms India - Adoption of IoT" class="w-full h-48 object-cover" />
           <div class="p-6">
             <h3 class="text-xl font-semibold text-gray-800 mb-2">Smart Farms India - Adoption of IoT</h3>
             <p class="text-gray-600 mb-4">How Indian farmers used IoT-based systems to increase yield by 30% and reduce water usage by 40%.</p>
-            <a href="pages/case-study-india-iot.html" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+            <a href="pages/case-study-india-iot.html" class="text-green-600 hover:text-green-800 font-medium flex items-center focus-outline">
               Read Full Case Study
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -316,12 +421,12 @@
             </a>
           </div>
         </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+        <div class="case-study-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
           <img src="https://media.istockphoto.com/id/2158689662/photo/drone-gps-positioning-system-aerial-view-land-plot-site-survey-for-property-location-drone.webp?a=1&b=1&s=612x612&w=0&k=20&c=rocjgguqpgcyWax1y_gcQmlp39PYO6SjgG4Orkq4W4k=" alt="Kenya Drone Mapping Project" class="w-full h-48 object-cover" />
           <div class="p-6">
             <h3 class="text-xl font-semibold text-gray-800 mb-2">Kenya Drone Mapping Project</h3>
             <p class="text-gray-600 mb-4">Using drone technology to map farmland and improve land use planning for smallholder farmers.</p>
-            <a href="pages/case-study-kenya-drones.html" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+            <a href="pages/case-study-kenya-drones.html" class="text-green-600 hover:text-green-800 font-medium flex items-center focus-outline">
               Read Full Case Study
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -329,12 +434,12 @@
             </a>
           </div>
         </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+        <div class="case-study-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
           <img src="https://media.istockphoto.com/id/2033658704/photo/robotic-arms-harvesting-crops-inside-a-greenhouse-or-plant.webp?a=1&b=1&s=612x612&w=0&k=20&c=_yhJqnYIYeKTS0t8UkkwDYv31kXIfluXuPR9bZXYlKM=" alt="Brazilian Soybean AI Harvest Optimization" class="w-full h-48 object-cover" />
           <div class="p-6">
             <h3 class="text-xl font-semibold text-gray-800 mb-2">Brazilian Soybean AI Harvest Optimization</h3>
             <p class="text-gray-600 mb-4">Implementing AI-driven harvest scheduling increased soybean productivity by 25% in Mato Grosso region.</p>
-            <a href="pages/case-study-brazil-ai-harvest.html" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+            <a href="pages/case-study-brazil-ai-harvest.html" class="text-green-600 hover:text-green-800 font-medium flex items-center focus-outline">
               Read Full Case Study
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -346,28 +451,31 @@
     </div>
   </section>
 
-      <section id="downloadable resources" class="text-center my-16">
-      <h3 class="text-2xl font-bold text-green-700 mb-4">Get More Information</h3>
-      <p class="text-gray-700 mb-6 max-w-2xl mx-auto">All you need to know about the site and resources</p>
-      <a href="pages/resources.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition-colors">Explore Downloadable Resources</a> 
-    </section>
+  <!-- Downloadable Resources Section -->
+  <section id="downloadable-resources" class="text-center my-16">
+    <h3 class="text-2xl font-bold text-green-700 mb-4">Get More Information</h3>
+    <p class="text-gray-700 mb-6 max-w-2xl mx-auto">All you need to know about the site and resources</p>
+    <a href="pages/resources.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition-colors focus:outline-none focus:ring-2 focus:ring-green-300">Explore Downloadable Resources</a> 
+  </section>
 
-      <section id="faqs" class="text-center my-16">
-      <h3 class="text-2xl font-bold text-green-700 mb-4">Get More Information</h3>
-      <p class="text-gray-700 mb-6 max-w-2xl mx-auto">Learn More About Frequently Asked Questions</p>
-      <a href="faqs/funding-options-farmers-faq.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition-colors">Funding Options Farmers Faq</a> 
-      <a href="faqs/precision-agriculture-faq.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition-colors">Precision Agriculture Faq</a>
-      <a href="faqs/profitable-crops-uganda-faq.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition-colors">Profitable Crops In Uganda</a>
-    </section>
-
+  <!-- FAQs Section -->
+  <section id="faqs" class="text-center my-16">
+    <h3 class="text-2xl font-bold text-green-700 mb-4">Frequently Asked Questions</h3>
+    <p class="text-gray-700 mb-6 max-w-2xl mx-auto">Find answers to common questions about agri-tech</p>
+    <div class="flex flex-wrap justify-center gap-4">
+        <a href="faqs/funding-options-farmers-faq.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition-colors focus:outline-none focus:ring-2 focus:ring-green-300">Funding Options for Farmers</a> 
+        <a href="faqs/precision-agriculture-faq.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition-colors focus:outline-none focus:ring-2 focus:ring-green-300">Precision Agriculture FAQ</a>
+        <a href="faqs/profitable-crops-uganda-faq.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition-colors focus:outline-none focus:ring-2 focus:ring-green-300">Profitable Crops in Uganda</a>
+    </div>
+  </section>
 
   <!-- About Section -->
-  <section id="about" class="py-16 bg-white">
+  <section id="about" class="py-16 about-bg">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold mb-8 text-center text-green-700">About the Agri-Technology Resource Center</h2>
       <div class="max-w-3xl mx-auto">
         <p class="text-lg text-gray-700 mb-6">
-          The Agri-Technology Resource Center is a comprehensive digital platform designed to connect farmers, researchers, and agricultural professionals with the latest innovations in agri-tech. It Started as a project and Was Eventually Updated to be A Resource Center.
+          The Agri-Technology Resource Center is a comprehensive digital platform designed to connect farmers, researchers, and agricultural professionals with the latest innovations in agri-tech. Created by a <strong>Student</strong> in <strong>Bishop's Senior School Mukono</strong>, In Senior Three Blue, It Started as a project and Was Eventually Updated to be A Resource Center Under The Supervision Of His Parents and School Community.
         </p>
         <p class="text-lg text-gray-700 mb-6">
           <strong>Our Vision:</strong> To revolutionize agriculture by fostering the adoption of cutting-edge technologies, ensuring sustainable farming practices, and empowering communities to achieve food security and economic growth.
@@ -382,12 +490,14 @@
     </div>
   </section>
 
-  <!-- Footer --> 
+  <!-- Contact Us Section -->
   <section id="contact-us" class="text-center my-16">
     <h3 class="text-2xl font-bold text-green-700 mb-4">Contact Us</h3>
     <p class="text-gray-700 mb-6 max-w-2xl mx-auto">Have questions or need assistance? Reach out to us!</p>
-    <a href="pages/contactus.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition-colors">Contact Us</a>
+    <a href="pages/contactus.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition-colors focus:outline-none focus:ring-2 focus:ring-green-300">Contact Us</a>
   </section>
+
+  <!-- Footer --> 
   <footer class="bg-green-800 text-white py-12">
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -398,27 +508,26 @@
         <div>
           <h3 class="text-xl font-bold mb-4">Quick Links</h3>
           <ul class="space-y-2">
-            <li><a href="#home" class="text-green-200 hover:text-white transition-colors block">Home</a></li> 
-            <li><a href="#resources" class="text-green-200 hover:text-white transition-colors block">Resources</a></li>
-            <li><a href="#technologies" class="text-green-200 hover:text-white transition-colors block">Technologies</a></li>
-            <li><a href="#news" class="text-green-200 hover:text-white transition-colors block">News & Articles</a></li>
-            <li><a href="#case-studies" class="text-green-200 hover:text-white transition-colors block">Case Studies</a></li>
-            <li><a href="#about" class="text-green-200 hover:text-white transition-colors block">About Us</a></li>
+            <li><a href="#home" class="text-green-200 hover:text-white transition-colors block footer-link focus-outline">Home</a></li> 
+            <li><a href="#resources" class="text-green-200 hover:text-white transition-colors block footer-link focus-outline">Resources</a></li>
+            <li><a href="#technologies" class="text-green-200 hover:text-white transition-colors block footer-link focus-outline">Technologies</a></li>
+            <li><a href="#news" class="text-green-200 hover:text-white transition-colors block footer-link focus-outline">News & Articles</a></li>
+            <li><a href="#case-studies" class="text-green-200 hover:text-white transition-colors block footer-link focus-outline">Case Studies</a></li>
+            <li><a href="#about" class="text-green-200 hover:text-white transition-colors block footer-link focus-outline">About Us</a></li>
           </ul>
-          <!--Yes I Created This And If you Want To Connect Just 'WhatsApp me on The Telephone Number.'-->
         </div>
         <div>
           <h3 class="text-xl font-bold mb-4">Contact Information</h3>
           <address class="not-italic text-green-200">
-            <p>Email: agritechnologyresourcecenter@gmail.com</p>
-            <p>Phone: +256 (706) 691-486</p>
+            <p class="mb-2">Email: <a href="mailto:agritechnologyresourcecenter@gmail.com" class="hover:underline focus-outline">agritechnologyresourcecenter@gmail.com</a></p>
+            <p>Phone: <a href="tel:+256706691486" class="hover:underline focus-outline">+256 (706) 691-486</a></p>
           </address>
         </div>
       </div>
       <div class="border-t border-green-700 mt-8 pt-6 text-center text-green-300">
         <p>&copy; 2025 Agri-Technology Resource Center. All rights reserved.</p>
-        <p><a href="pages/privacy-policy-terms-of-service.html" class="text-green-200 hover:text-white transition-colors block">Terms Of Service | Privacy Policy</a></p>
-        <p>Created By: <strong>Delish Byarugaba | delishbyarugaba@gmail.com</strong> </p>
+        <p><a href="pages/privacy-policy-terms-of-service.html" class="text-green-200 hover:text-white transition-colors block focus-outline">Terms Of Service | Privacy Policy</a></p>
+        <p>Created By: <strong>Delish Byarugaba | <a href="mailto:delishbyarugaba@gmail.com" class="hover:underline focus-outline">delishbyarugaba@gmail.com</a></strong> </p>
       </div>
     </div>
   </footer>
@@ -429,17 +538,24 @@
     const menuButton = document.getElementById('menuButton');
     const mobileMenu = document.getElementById('mobileMenu');
     menuButton.addEventListener('click', () => {
+      const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', !isExpanded);
       mobileMenu.classList.toggle('hidden');
     });
 
     // Theme toggle
     const themeToggle = document.getElementById('themeToggle');
     const body = document.getElementById('body');
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme === 'dark') {
-      body.classList.remove('light');
-      body.classList.add('dark');
-      themeToggle.textContent = 'Light Mode';
+
+    // Check for saved theme preference or respect OS setting
+    const savedTheme = localStorage.getItem('theme');
+    const osPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (osPrefersDark ? 'dark' : 'light');
+
+    if (initialTheme === 'dark') {
+        body.classList.remove('light');
+        body.classList.add('dark');
+        themeToggle.textContent = 'Light Mode';
     }
 
     themeToggle.addEventListener('click', () => {
@@ -462,7 +578,7 @@
       el.classList.toggle('hidden');
     }
 
-    // Dynamic resource filter
+    // Dynamic resource filter for all of the resources
     const resources = [
       { title: "Soil Sensor Data Guide", tag: "iot", link: "pages/sensor-data-guide.html" },
       { title: "Satellite Imaging for Crop Analysis", tag: "drones", link: "pages/satellite-imaging-for-crop-analysis.html" },
@@ -485,17 +601,27 @@
       const grid = document.getElementById("resourceGrid");
       grid.innerHTML = "";
       const filtered = tag === "all" ? resources : resources.filter(r => r.tag === tag);
+      
+      // Update active button state
+      document.querySelectorAll('.filter-button').forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.textContent.toLowerCase() === tag || (tag === 'all' && btn.textContent.toLowerCase() === 'all')) {
+              btn.classList.add('active');
+          }
+      });
+
       filtered.forEach(res => {
-        grid.innerHTML += `
-          <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+        const resourceCard = document.createElement('div');
+        resourceCard.className = 'resource-card bg-white border border-green-200 rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow';
+        resourceCard.innerHTML = `
             <span class="text-xs font-semibold text-green-600 uppercase">${res.tag.toUpperCase()}</span>
             <h3 class="mt-2 text-lg font-semibold text-gray-800">${res.title}</h3>
-            <a href="${res.link}" class="mt-4 inline-block text-green-600 hover:underline">View Resource</a>
-          </div>`;
+            <a href="${res.link}" class="mt-4 inline-block text-green-600 hover:underline focus-outline">View Resource</a>
+        `;
+        grid.appendChild(resourceCard);
       });
     }
 
-    
     window.onload = () => filterResources("all");
 
     document.getElementById("searchInput").addEventListener("input", function() {
@@ -503,29 +629,62 @@
       const grid = document.getElementById("resourceGrid");
       grid.innerHTML = "";
       resources.filter(r => r.title.toLowerCase().includes(query)).forEach(res => {
-        grid.innerHTML += `
-          <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+        const resourceCard = document.createElement('div');
+        resourceCard.className = 'resource-card bg-white border border-green-200 rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow';
+        resourceCard.innerHTML = `
             <span class="text-xs font-semibold text-green-600 uppercase">${res.tag.toUpperCase()}</span>
             <h3 class="mt-2 text-lg font-semibold text-gray-800">${res.title}</h3>
-            <a href="${res.link}" class="mt-4 inline-block text-green-600 hover:underline">View Resource</a>
-          </div>`;
+            <a href="${res.link}" class="mt-4 inline-block text-green-600 hover:underline focus-outline">View Resource</a>
+        `;
+        grid.appendChild(resourceCard);
       });
     });
+
     // Slideshow logic
     (function() {
       const slides = document.querySelectorAll('.slideshow-img');
       let current = 0;
+
       function showSlide(idx) {
         slides.forEach((slide, i) => {
           slide.classList.toggle('active', i === idx);
         });
       }
-      setInterval(() => {
+
+      function nextSlide() {
         current = (current + 1) % slides.length;
         showSlide(current);
-      }, 4000); // 4 seconds per slide
+      }
+
+      // Change slide every 5 seconds
+      const slideInterval = setInterval(nextSlide, 5000);
+
+      // Pause slideshow on hover
+      const slideshowContainer = document.querySelector('.slideshow-container');
+      slideshowContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+      slideshowContainer.addEventListener('mouseleave', () => setInterval(nextSlide, 5000));
+
       showSlide(current);
     })();
+
+    // Scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+    });
   </script>
 </body>
 </html>
